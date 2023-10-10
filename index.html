@@ -1,0 +1,53 @@
+<html>
+  <head> </head>
+  <body>
+    <input id="input" onchange="findSeries()" />
+    <div id="serie"></div>
+  </body>
+  <script>
+    function fuzzySearch(query, collection, threshold = 3) {
+      query = query.toLowerCase();
+
+      console.log(query);
+      return collection.filter((item) => {
+        item.name = item.name.toLowerCase();
+        const distanceMatrix = Array(item.name.length + 1)
+          .fill(null)
+          .map(() => Array(query.length + 1).fill(null));
+
+        for (let i = 0; i <= item.name.length; i++) {
+          distanceMatrix[i][0] = i;
+        }
+
+        for (let j = 0; j <= query.length; j++) {
+          distanceMatrix[0][j] = j;
+        }
+
+        for (let i = 1; i <= item.name.length; i++) {
+          for (let j = 1; j <= query.length; j++) {
+            const cost = item.name[i - 1] === query[j - 1] ? 0 : 1;
+            distanceMatrix[i][j] = Math.min(
+              distanceMatrix[i - 1][j] + 1, // Deletion
+              distanceMatrix[i][j - 1] + 1, // Insertion
+              distanceMatrix[i - 1][j - 1] + cost // Substitution
+            );
+          }
+        }
+
+        const minDistance = Math.min(...distanceMatrix[item.name.length]);
+        return minDistance <= threshold;
+      });
+    }
+
+    let series = [];
+    fetch("/series.json")
+      .then((res) => res.json())
+      .then((data) => (series = data));
+    function findSeries() {
+      console.log("logging");
+      let titel = document.getElementById("input").innerHTML;
+      const results = fuzzySearch(titel, series);
+      console.log(results);
+    }
+  </script>
+</html>
