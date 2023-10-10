@@ -75,7 +75,7 @@
       let links = [];
       global_result[z].files.sort();
       for (let i = 1; i < global_result[z].files.length; i++) {
-        links += `<button class="entry" href="/${global_result[z].files[i]}" download>${global_result[z].files[i]} ⬇️</button>
+        links += `<button class="entry"> <a href="/${global_result[z].files[i]}" download>${global_result[z].files[i]} ⬇️</a></button>
 `;
       }
       document.getElementById("serie").innerHTML = `

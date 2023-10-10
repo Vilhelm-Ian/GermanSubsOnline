@@ -47,6 +47,8 @@ body {
 	padding: 2%;
 	margin: 2%;
 	font-size: 5vw;
+	max-height: 50px;
+	display: flex;
 }
 
 .search-entry:hover {
@@ -74,4 +76,25 @@ body {
 .search-photo {
 	width: 10%;
 	height: 5%;
+	max-height: 50px;
+}
+
+a:link {
+	text-decoration: none;
+	color: black;
+}
+
+a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	text-decoration: none;
+	color: black;
+}
+
+a:active {
+	text-decoration: none;
+	color: black;
 }
