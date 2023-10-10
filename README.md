@@ -3,7 +3,7 @@ GermanSubsOnline is a user-friendly web application that provides German subtitl
 
 
 - **Extensive Subtitle Library:** Access a vast collection of German subtitles for a wide variety of content.
-- **WhisperX Integration:** Our subtitles are created using the cutting-edge WhisperX subtitle generation technology, ensuring accuracy and clarity.
+- **WhisperX Integration:** Our subtitles are created using the cutting-edge WhisperX subtitle generation technology, ensuring accuracy and clarity. That means that subtitles are **ACURRATE** most german subtitles aren't the same as the dub
 - **User-Friendly Interface:** Easily search, browse, and download subtitles to enhance your viewing experience.
 - **Language Learning:** Improve your German language skills by watching your favorite movies and shows with subtitles.
 - **Community Contributions:** Contribute your own subtitles and help us grow our subtitle library.
