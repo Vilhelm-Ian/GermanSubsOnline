@@ -1,14 +1,24 @@
 <html>
-  <head> </head>
+  <head>
+    <link rel="stylesheet" href="index.css" />
+  </head>
   <body>
-    <input id="input" onchange="findSeries()" />
-    <div id="serie"></div>
+    <div class="container">
+      <input class="search-input" id="input" onkeyup="findSeries()" />
+      <div id="entries" class="search-result">
+        <p class="search-entry">Search result 1</p>
+        <p class="search-entry">Search result 2</p>
+        <p class="search-entry">Search result 3</p>
+      </div>
+      <div id="serie"></div>
+    </div>
   </body>
   <script>
-    function fuzzySearch(query, collection, threshold = 3) {
+    let global_result = [];
+    function fuzzySearch(query, collection, threshold = 10) {
       query = query.toLowerCase();
 
-      console.log(query);
+      console.log(query + "ho");
       return collection.filter((item) => {
         item.name = item.name.toLowerCase();
         const distanceMatrix = Array(item.name.length + 1)
@@ -45,9 +55,32 @@
       .then((data) => (series = data));
     function findSeries() {
       console.log("logging");
-      let titel = document.getElementById("input").innerHTML;
+      let titel = document.getElementById("input").value;
       const results = fuzzySearch(titel, series);
-      console.log(results);
+      global_result = results;
+      if (!results.length) {
+        return;
+      }
+      let entries = "";
+      document.getElementById("entries").style.display = "block";
+      for (let i = 0; i < results.length; i++) {
+        console.log(results);
+        entries += `<p id="${i}"class="search-entry" onclick=display_series(${i})>${results[i].name}</p>`;
+      }
+      document.getElementById("entries").innerHTML = entries;
+    }
+
+    function display_series(z) {
+      let links = [];
+      for (let i = 1; i < global_result[z].files.length; i++) {
+        links += `<a href="/${global_result[z].files[i]}" download>${global_result[z].files[i]}</a>
+`;
+      }
+      document.getElementById("serie").innerHTML = `
+          <img src="${global_result[z].image}"/>${links}
+          `;
+
+      document.getElementById("entries").style.display = "none";
     }
   </script>
 </html>
