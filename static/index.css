@@ -20,6 +20,7 @@
 #serie {
 	display: flex;
 	flex-direction: column;
+	margin-top: 5%;
 }
 
 body {
@@ -37,7 +38,7 @@ body {
 	display: none; /* Initially hidden */
 	width: 90%;
 	border: none;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 2px 4px rgba(10.5, 10.5, 10.5);
 }
 
 .search-entry {
@@ -45,4 +46,32 @@ body {
 	border-color: black;
 	padding: 2%;
 	margin: 2%;
+	font-size: 5vw;
+}
+
+.search-entry:hover {
+	border-style: solid;
+}
+
+.logo {
+	height: 10vh;
+}
+
+.entry {
+	background: white;
+	margin: 2;
+	border-radius: 5px;
+	font-size: 14px;
+	box-shadow: 0 2px 4px rgba(10.5, 10.5, 10.5);
+	border: none;
+	padding: 5;
+}
+
+.entry:hover {
+	font-weight: bold;
+}
+
+.search-photo {
+	width: 10%;
+	height: 5%;
 }

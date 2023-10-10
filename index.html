@@ -4,12 +4,14 @@
   </head>
   <body>
     <div class="container">
-      <input class="search-input" id="input" onkeyup="findSeries()" />
-      <div id="entries" class="search-result">
-        <p class="search-entry">Search result 1</p>
-        <p class="search-entry">Search result 2</p>
-        <p class="search-entry">Search result 3</p>
-      </div>
+      <img src="logo.jpeg" class="logo" />
+      <input
+        placeholder="Search for Series"
+        class="search-input"
+        id="input"
+        onkeyup="findSeries()"
+      />
+      <div id="entries" class="search-result"></div>
       <div id="serie"></div>
     </div>
   </body>
@@ -54,26 +56,26 @@
       .then((res) => res.json())
       .then((data) => (series = data));
     function findSeries() {
-      console.log("logging");
       let titel = document.getElementById("input").value;
       const results = fuzzySearch(titel, series);
       global_result = results;
       if (!results.length) {
+        document.getElementById("entries").style.display = "none";
         return;
       }
       let entries = "";
       document.getElementById("entries").style.display = "block";
       for (let i = 0; i < results.length; i++) {
-        console.log(results);
-        entries += `<p id="${i}"class="search-entry" onclick=display_series(${i})>${results[i].name}</p>`;
+        entries += `<p id="${i}"class="search-entry" onclick=display_series(${i})><img class="search-photo" src="${results[i].image}"/> ${results[i].name}</p>`;
       }
       document.getElementById("entries").innerHTML = entries;
     }
 
     function display_series(z) {
       let links = [];
+      global_result[z].files.sort();
       for (let i = 1; i < global_result[z].files.length; i++) {
-        links += `<a href="/${global_result[z].files[i]}" download>${global_result[z].files[i]}</a>
+        links += `<button class="entry" href="/${global_result[z].files[i]}" download>${global_result[z].files[i]} ⬇️</button>
 `;
       }
       document.getElementById("serie").innerHTML = `
